@@ -1,0 +1,44 @@
+import random
+
+easy_level = 8
+hard_level = 5
+
+def check_answer(number, answer, turns):
+    if number > answer:
+        print("Too high")
+        return turns - 1
+    elif number < answer:
+        print("Too Low")
+        return turns -1
+    else:
+        print("You got it!")
+        
+def choose_difficulty():
+    level = input("Choose a difficulty level: press 'e' for easy level, press 'h' for hard level)
+    if level == 'e':
+        return easy_level
+    else:
+        return hard_level
+        
+def game():
+    print("Welcome to the number guessing game")
+    print("I am thinking of a number between 1 and 100")
+    answer = random.randint(1,100)
+    
+    turns = choose_difficulty()
+    number = 0
+    
+    while number != answer:
+        print(f"you have {turns} attempts remaining to guess the number!")
+        
+        number = int(input("Make a guess again: "))
+        
+        turns = check_answer(number, answer, turns)
+        if turns == 0:
+            print("You have run out of guesses, you loses!")
+            return
+        elif number != answer:
+            print("Guess Again!")
+            
+game()
+        
